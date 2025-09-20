@@ -1,7 +1,7 @@
 body {
-  background: linear-gradient(135deg, #74ebd5, #9face6);
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
-  color: #212529;
+  color: #f1f1f1;
   margin: 0;
   padding: 0;
   display: flex;
@@ -11,58 +11,66 @@ body {
 }
 
 .weather-app {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  max-width: 360px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  max-width: 380px;
   width: 100%;
-  padding: 32px 24px;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 36px 28px;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weather-app:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
 }
 
 .weather-app h1 {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
-  color: #fff;
-  margin-bottom: 24px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 28px;
 }
 
 .weather-form {
   display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 28px;
 }
 
 .weather-form input {
   flex: 1;
-  padding: 12px;
+  padding: 14px;
   font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   outline: none;
-  background: rgba(255, 255, 255, 0.3);
-  color: #212529;
-  transition: background 0.3s ease;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  transition: all 0.3s ease;
 }
 
 .weather-form input::placeholder {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .weather-form input:focus {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
 }
 
 .weather-form button {
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #007bff, #00d4ff);
+  padding: 14px 22px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -71,7 +79,7 @@ body {
 
 .weather-form button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+  box-shadow: 0 6px 16px rgba(0, 114, 255, 0.5);
 }
 
 .weather-form button:active {
@@ -80,9 +88,12 @@ body {
 }
 
 .weather-result {
-  min-height: 32px;
-  font-size: 18px;
-  font-weight: 600;
+  min-height: 36px;
+  font-size: 20px;
+  font-weight: 700;
   color: #fff;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
 }

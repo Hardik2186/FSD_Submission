@@ -1,9 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', 'Roboto', Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ff7e5f, #feb47b);
+        color: #fff;
+        padding: 20px;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 40px 30px;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+        text-align: center;
+        animation: fadeIn 0.6s ease forwards;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        background: linear-gradient(90deg, #ffb347, #ffcc33);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #fff;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+      }
+
+      .calculator form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #fff;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: none;
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        font-size: 1rem;
+        outline: none;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      input[type="text"]:focus {
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 10px rgba(255,255,255,0.4);
+      }
+
+      .operation-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .operation-option {
+        flex: 1 1 45%;
+      }
+
+      .operation-option input[type="radio"] {
+        display: none;
+      }
+
+      .operation-btn {
+        display: block;
+        padding: 12px 0;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #ff7e5f, #feb47b);
+        cursor: pointer;
+        font-weight: 600;
+        text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        user-select: none;
+      }
+
+      .operation-option input[type="radio"]:checked + .operation-btn {
+        background: linear-gradient(135deg, #fbd786, #f7797d);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      }
+
+      .operation-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      }
+
+      .calculate-btn {
+        padding: 14px 0;
+        font-size: 1.2rem;
+        border-radius: 12px;
+        border: none;
+        font-weight: 700;
+        cursor: pointer;
+        background: linear-gradient(135deg, #f7797d, #fbd786);
+        color: #212529;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .calculate-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      }
+
+      .result-section {
+        margin-top: 30px;
+      }
+
+      .error-message,
+      .result-message {
+        background: rgba(255,255,255,0.15);
+        padding: 16px;
+        border-radius: 12px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 1.1rem;
+        animation: fadeIn 0.4s ease forwards;
+      }
+
+      .error-message {
+        background: rgba(255, 0, 0, 0.2);
+      }
+
+      .result-message {
+        background: rgba(0, 255, 0, 0.2);
+      }
+
+      .error-icon {
+        font-size: 1.2rem;
+      }
+
+      .result-icon {
+        font-size: 1.2rem;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 30px 20px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        .operation-buttons {
+          gap: 8px;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -14,49 +204,31 @@
         <form method="post" action="/">
           <div class="form-group">
             <label for="num1">First Number:</label>
-            <input
-              type="text"
-              id="num1"
-              name="num1"
-              value="<%= num1 %>"
-              placeholder="Enter first number"
-              required
-            />
+            <input type="text" id="num1" name="num1" value="<%= num1 %>" placeholder="Enter first number" required />
           </div>
 
           <div class="form-group">
             <label for="num2">Second Number:</label>
-            <input
-              type="text"
-              id="num2"
-              name="num2"
-              value="<%= num2 %>"
-              placeholder="Enter second number"
-              required
-            />
+            <input type="text" id="num2" name="num2" value="<%= num2 %>" placeholder="Enter second number" required />
           </div>
 
           <div class="form-group">
             <label>Choose Operation:</label>
             <div class="operation-buttons">
               <label class="operation-option">
-                <input type="radio" name="operation" value="add" <%= operation
-                === 'add' ? 'checked' : '' %>>
+                <input type="radio" name="operation" value="add" <%= operation === 'add' ? 'checked' : '' %> />
                 <span class="operation-btn">➕ Add</span>
               </label>
               <label class="operation-option">
-                <input type="radio" name="operation" value="subtract" <%=
-                operation === 'subtract' ? 'checked' : '' %>>
+                <input type="radio" name="operation" value="subtract" <%= operation === 'subtract' ? 'checked' : '' %> />
                 <span class="operation-btn">➖ Subtract</span>
               </label>
               <label class="operation-option">
-                <input type="radio" name="operation" value="multiply" <%=
-                operation === 'multiply' ? 'checked' : '' %>>
+                <input type="radio" name="operation" value="multiply" <%= operation === 'multiply' ? 'checked' : '' %> />
                 <span class="operation-btn">✖️ Multiply</span>
               </label>
               <label class="operation-option">
-                <input type="radio" name="operation" value="divide" <%=
-                operation === 'divide' ? 'checked' : '' %>>
+                <input type="radio" name="operation" value="divide" <%= operation === 'divide' ? 'checked' : '' %> />
                 <span class="operation-btn">➗ Divide</span>
               </label>
             </div>
@@ -71,7 +243,8 @@
             <span class="error-icon">⚠️</span>
             <%= error %>
           </div>
-          <% } %> <% if (result !== null && !error) { %>
+          <% } %> 
+          <% if (result !== null && !error) { %>
           <div class="result-message">
             <span class="result-icon">🎉</span>
             The answer is: <strong><%= result %></strong>

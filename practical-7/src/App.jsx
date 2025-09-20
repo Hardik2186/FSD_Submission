@@ -32,7 +32,7 @@ function App() {
       </aside>
       <main className={sidebarOpen ? "shifted" : ""}>
         <h1>Welcome to My Website</h1>
-        <p>This is the main content of the webpage . i am Jagdish Hadiyal 23cs025.</p>
+        <p>This is the main content of the webpage . i am Hardik Hadiya.</p>
       </main>
     </div>
   );

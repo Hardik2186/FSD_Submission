@@ -1,14 +1,18 @@
-/* Minimal, professional To-Do List styles */
+/* Modern Sunset To-Do List Styles */
 :root {
-  --color-primary: #6f42c1;
-  --color-bg: #1a1333;
-  --color-card: #2d2050;
-  --color-input: #251a3a;
-  --color-btn: #7c4dff;
-  --color-btn-hover: #5f36b7;
-  --color-text: #fff;
-  --color-accent: #b39ddb;
-  --color-border: #3d2e5a;
+  --color-bg: #1e1e1e;
+  --color-card: #2a2a2a;
+  --color-input: #333;
+  --color-text: #f8f9fa;
+
+  --color-primary: #ff7e00;  /* orange */
+  --color-secondary: #ffba08; /* yellow */
+  --color-accent: #ffc107;    /* golden accent */
+  --color-btn: linear-gradient(135deg, #ff7e00, #ffba08);
+  --color-btn-hover: linear-gradient(135deg, #e76f00, #e6a000);
+
+  --radius: 14px;
+  --shadow: 0 6px 16px rgba(0,0,0,0.25);
 }
 
 body {
@@ -16,40 +20,52 @@ body {
   color: var(--color-text);
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
   min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 12px;
 }
 
+/* App Container */
 .todo-app {
-  max-width: 400px;
-  margin: 48px auto;
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
   background: var(--color-card);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  padding: 32px 24px 24px 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  animation: fadeIn 0.4s ease;
 }
 
 .todo-title {
   font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 32px;
-  color: var(--color-text);
+  font-weight: 700;
+  margin-bottom: 28px;
+  text-align: center;
+  background: linear-gradient(135deg, #ff7e00, #ffba08);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   letter-spacing: 1px;
 }
 
+/* Input Row */
 .todo-input-row {
   display: flex;
   width: 100%;
-  gap: 12px;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin-bottom: 28px;
 }
 
 .todo-input {
   flex: 1;
   padding: 12px 16px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   background: var(--color-input);
   color: var(--color-text);
   font-size: 1rem;
@@ -60,42 +76,52 @@ body {
   box-shadow: 0 0 0 2px var(--color-accent);
 }
 
+/* Add Button */
 .todo-add-btn {
   background: var(--color-btn);
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 0 20px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
-  height: 40px;
+  transition: transform 0.1s ease, opacity 0.2s ease;
+  height: 44px;
+  white-space: nowrap;
 }
 .todo-add-btn:hover {
-  background: var(--color-btn-hover);
-  transform: translateY(-1px);
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+.todo-add-btn:active {
+  transform: translateY(0);
 }
 
+/* To-Do List */
 .todo-list {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .todo-task {
-  background: var(--color-input);
-  border-radius: 8px;
-  padding: 16px 16px 16px 20px;
+  background: #2f2f2f;
+  border-radius: 10px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   font-size: 1rem;
-  color: var(--color-text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.todo-task:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }
 
+/* Task Actions */
 .todo-actions {
   display: flex;
   gap: 8px;
@@ -104,17 +130,38 @@ body {
 .icon-btn {
   background: transparent;
   border: none;
-  padding: 4px;
-  border-radius: 4px;
+  padding: 6px;
+  border-radius: 6px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: background 0.2s ease;
+  justify-content: center;
+  color: var(--color-accent);
+  font-size: 1.1rem;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 .icon-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 .icon-btn:not(:disabled):hover {
-  background: var(--color-border);
+  background: rgba(255, 186, 8, 0.15);
+  transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .todo-app {
+    margin: 20px;
+    padding: 24px 16px;
+  }
+  .todo-title {
+    font-size: 1.6rem;
+  }
 }

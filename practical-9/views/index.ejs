@@ -1,11 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Site</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <style>
+      /* Base Reset & Font */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', 'Roboto', Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin-bottom: 24px;
+        line-height: 1.6;
+        color: #f1f1f1;
+      }
+
+      .btn {
+        background: #fff;
+        color: #764ba2;
+        padding: 12px 28px;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.2s ease;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background: #f1f1f1;
+        transform: translateY(-2px);
+      }
+
+      footer {
+        position: absolute;
+        bottom: 20px;
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+    </style>
   </head>
   <body>
     <h1>Welcome to our site</h1>
-    <p>This is a proof of concept for our product site backend.</p>
+    <p>
+      This is a proof of concept for our product site backend.  
+      Stay tuned for more updates as we roll out exciting features!
+    </p>
+    <a href="#" class="btn">Explore Products</a>
+
+    <footer>© 2025 Product Site. All rights reserved.</footer>
   </body>
 </html>
